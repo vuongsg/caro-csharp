@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\bg-exit-hover.png" />
+    <None Remove="Resources\bg-exit.png" />
+    <None Remove="Resources\bg-minimized-hover.png" />
+    <None Remove="Resources\bg-minimized.png" />
+    <None Remove="Resources\icon.ico" />
+    <None Remove="Resources\imgO.png" />
+    <None Remove="Resources\imgSplash.png" />
+    <None Remove="Resources\imgX.png" />
+    <None Remove="Resources\pic-introduce.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Caro.ViewModel\Caro.ViewModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\DLLs\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\bg-exit-hover.png" />
+    <Resource Include="Resources\bg-exit.png" />
+    <Resource Include="Resources\bg-minimized-hover.png" />
+    <Resource Include="Resources\bg-minimized.png" />
+    <Resource Include="Resources\icon.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\imgO.png" />
+    <Resource Include="Resources\imgSplash.png" />
+    <Resource Include="Resources\imgX.png" />
+    <Resource Include="Resources\pic-introduce.jpg" />
+  </ItemGroup>
+
+</Project>

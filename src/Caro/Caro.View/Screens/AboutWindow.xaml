@@ -1,0 +1,135 @@
+﻿<Window x:Class="Caro.View.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:local="clr-namespace:Caro.View"
+        xmlns:viewModel="clr-namespace:Caro.ViewModel;assembly=Caro.ViewModel"
+        mc:Ignorable="d"
+        Height="620" Width="910" Background="Transparent" WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize" WindowStyle="None" ShowInTaskbar="False" x:Name="myWindow">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <viewModel:EventToCommand Command="{Binding LoadCommand}" CommandParameter="{Binding ElementName=myWindow}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/StyleResource.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.DataContext>
+        <viewModel:AboutViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+
+        <Rectangle Grid.Row="0" Grid.RowSpan="3" StrokeThickness="2" Fill="BlanchedAlmond" Stroke="DeepPink" />
+
+        <Grid Grid.Row="0" Background="FloralWhite">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDown">
+                    <viewModel:EventToCommand Command="{Binding TitleBar_MouseDownCommand}"
+                                                                     PassEventArgsToCommand="True" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <!--btnMinimize, but here not use it-->
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="Auto" />
+                <!--btnExit, but here not use it-->
+            </Grid.ColumnDefinitions>
+
+            <local:ucTitleBar Grid.Column="0" />
+        </Grid>
+
+        <!--Row 1-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="410" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Ellipse Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="400" Height="400"
+                        Stroke="DeepPink" StrokeThickness="6" StrokeDashArray="4 2">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="/Caro.View;component/Resources/pic-introduce.jpg" Stretch="UniformToFill"/>
+                </Ellipse.Fill>
+            </Ellipse>
+
+            <StackPanel Grid.Column="1">
+                <TextBlock HorizontalAlignment="Center">
+                    <TextBlock.Inlines>
+                        <Run Text="Caro" FontSize="30" Foreground="YellowGreen" FontWeight="UltraBold" />
+                        <LineBreak />
+                    </TextBlock.Inlines>
+                </TextBlock>
+                <Rectangle Width="120" Height="5" Stroke="Black" StrokeThickness="5" />
+                <TextBlock FontSize="18">
+                    <TextBlock.Inlines>
+                        <Run Text="Chương trình" FontWeight="Bold" />
+                        <LineBreak />
+                        <Run Text="- Các phiên bản" />
+                        <LineBreak />
+                        <Run Text="  + Phiên bản 2.0 - 2017 (mới nhất)" />
+                        <LineBreak />
+                        <Run Text="  + Phiên bản 1.0 - 2013" />
+                        <LineBreak />
+                    </TextBlock.Inlines>
+                </TextBlock>
+                <Rectangle Width="120"  Height="5" Stroke="Black" StrokeThickness="5" />
+                <TextBlock FontSize="18">
+                    <TextBlock.Inlines>
+                        <Run Text="Tác giả" FontWeight="Bold" />
+                        <LineBreak />
+                        <Run Text="- Vuong Nguyen" />
+                        <LineBreak />
+                        <Run Text="- Liên hệ: "/>
+                        <Hyperlink NavigateUri="https://github.com/vuongsg" Command="{Binding Link_RequestNavigateCommand}"
+                                         CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
+                            my GitHub
+                        </Hyperlink>
+                        <LineBreak />
+                    </TextBlock.Inlines>
+                </TextBlock>
+                <Rectangle Width="120"  Height="5" Stroke="Black" StrokeThickness="5" />
+                <TextBlock FontSize="18">
+                    <TextBlock.Inlines>
+                        <Run Text="Hướng dẫn chơi" FontWeight="Bold" />
+                        <LineBreak />
+                        <Run Text="- You act X, computer acts O" />
+                        <LineBreak />
+                        <Run Text="- In the first game, computer goes first" />
+                        <LineBreak />
+                        <Run Text="- Since the second game on, guy who lost in previouse game will goes first" />
+                        <LineBreak />
+                        <Run Text="- Chương trình áp dụng luật chặn kín 2 đầu, nghĩa là bạn đi" />
+                        <LineBreak />
+                        <Run Text="được 5 quân liền nhau nhưng bị chặn kín thì không ăn được." />
+                        <LineBreak />
+                        <Run Text="Ngược lại nếu bị chặn nhưng không kín thì vẫn ăn" />
+                        <LineBreak />
+                        <LineBreak />
+                        <Run Text="Chúc mọi người chơi vui và cố gắng đừng để thua NHIỀU" FontWeight="Bold" />
+                        <LineBreak />
+                        <Run Text="quá nhé. Ahihi ^_^" FontWeight="Bold" />
+                    </TextBlock.Inlines>
+                </TextBlock>
+            </StackPanel>
+
+        </Grid>
+
+        <!--Row 2-->
+        <Button Grid.Row="2" Content="Close" Width="70" Height="40"
+                      Command="{Binding ExitCommand}" CommandParameter="" />
+    </Grid>
+</Window>

@@ -1,0 +1,94 @@
+﻿<Window x:Class="Caro.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:local="clr-namespace:Caro.View"
+        xmlns:viewModel="clr-namespace:Caro.ViewModel;assembly=Caro.ViewModel"
+        mc:Ignorable="d"
+        Title="Caro" Height="740" Width="1002" Background="Transparent" WindowStyle="None" x:Name="myMainWindow"
+        ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Icon="/Caro.View;component/Resources/icon.ico">
+    <!--use ResizeMode="CanMinimize" instead of AllowTransparency="True" because we can not change AllowTransparency properties
+    during running time, it means we can set WindowStyle=SingleBorderWindow to appear animation when minimizing, exiting window
+    and important program can be minimized when user click icon on Taskbar-->
+    <Window.DataContext>
+        <viewModel:MainViewModel />
+    </Window.DataContext>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <viewModel:EventToCommand Command="{Binding LoadCommand}"
+                                                            CommandParameter="{Binding ElementName=myMainWindow}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="StateChanged">
+            <viewModel:EventToCommand Command="{Binding StateChangeCommand}" CommandParameter="Hello World" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Closing">
+            <viewModel:EventToCommand Command="{Binding ClosingCommand}" PassEventArgsToCommand="True" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2"
+                          StrokeThickness="2" Fill="BlanchedAlmond" Stroke="DeepPink" />
+
+        <!--Row 0, must set background for titlebar so can dragmove it-->
+        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="FloralWhite">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDown">
+                    <viewModel:EventToCommand Command="{Binding TitleBar_MouseDownCommand}"
+                                                                         PassEventArgsToCommand="True" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <local:ucTitleBar Grid.Column="0" />
+            <Button Grid.Column="1" Width="40" Height="25" Style="{StaticResource btnMinimized}" Command="{Binding MinimizeCommand}"
+                          CommandParameter="Hello World" />
+            <Button Grid.Column="3" Width="40" Height="25" Style="{StaticResource btnExit}" Command="{Binding ExitCommand}"
+                          CommandParameter="Hello World" />
+        </Grid>
+
+        <!--MainGrid: board-->
+        <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" x:Name="mainGrid">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Loaded">
+                    <viewModel:EventToCommand Command="{Binding MainGrid_LoadCommand}"
+                                                                    CommandParameter="{Binding ElementName=mainGrid}" />
+                </i:EventTrigger>
+                <i:EventTrigger EventName="MouseDown">
+                    <viewModel:EventToCommand Command="{Binding Window_MouseDownCommand}"
+                                                                    PassEventArgsToCommand="True" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="0" Width="160" Height="160" Style="{StaticResource btnPlay}" Content="Play"
+                          Command="{Binding PlayCommand}" CommandParameter="" />
+            <Button Grid.Row="1" Width="160" Height="160" Style="{StaticResource btnScore}" Content="Score"
+                          Command="{Binding OpenScoreWindowCommand}" CommandParameter="" />
+            <Button Grid.Row="2" Width="160" Height="160" Style="{StaticResource btnIntroduce}" Content="About"
+                          Command="{Binding OpenIntroduceWindowCommand}" CommandParameter="" />
+        </Grid>
+
+    </Grid>
+</Window>

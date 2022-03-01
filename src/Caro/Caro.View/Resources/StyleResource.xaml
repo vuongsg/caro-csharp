@@ -1,0 +1,350 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Caro.View">
+    <!--btnExit-->
+    <Style x:Key="btnExit" TargetType="{x:Type Button}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <Rectangle>
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Caro.View;component/Resources/bg-exit.png" Stretch="Fill" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Grid>
+                                <Rectangle StrokeThickness="2" Stroke="AntiqueWhite">
+                                    <Rectangle.Fill>
+                                        <ImageBrush ImageSource="/Caro.View;component/Resources/bg-exit-hover.png" Stretch="Fill" />
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    <!--btnMinimized-->
+    <Style x:Key="btnMinimized" TargetType="{x:Type Button}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <Rectangle>
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="/Caro.View;component/Resources/bg-minimized.png" Stretch="Fill" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Grid>
+                                <Rectangle StrokeThickness="2" Stroke="AntiqueWhite">
+                                    <Rectangle.Fill>
+                                        <ImageBrush ImageSource="/Caro.View;component/Resources/bg-minimized-hover.png" Stretch="Fill" />
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--btnPlay-->
+    <Style x:Key="btnPlay" TargetType="{x:Type Button}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="FontSize" Value="28" />
+        <Setter Property="Foreground" Value="Aquamarine" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Ellipse StrokeThickness="10" StrokeDashArray="4 2">
+                            <Ellipse.Fill>
+                                <RadialGradientBrush GradientOrigin="0.5, 0.5"
+                                                         Center="0.5, 0.5"
+                                                         RadiusX="0.5" RadiusY="0.5">
+                                    <GradientStop Color="IndianRed" Offset="0.0"/>
+                                    <GradientStop Color="Goldenrod" Offset="0.25"/>
+                                    <GradientStop Color="Azure" Offset="0.75"/>
+                                    <GradientStop Color="Firebrick" Offset="1.0"/>
+                                </RadialGradientBrush>
+                            </Ellipse.Fill>
+                            <Ellipse.Stroke>
+                                <RadialGradientBrush GradientOrigin="0.5, 0.5"
+                                                         Center="0.5, 0.5"
+                                                         RadiusX="0.5" RadiusY="0.5">
+                                    <GradientStop Color="LightSalmon" Offset="0.0"/>
+                                    <GradientStop Color="MediumTurquoise" Offset="0.25"/>
+                                    <GradientStop Color="Peru" Offset="0.75"/>
+                                    <GradientStop Color="Purple" Offset="1.0"/>
+                                </RadialGradientBrush>
+                            </Ellipse.Stroke>
+                        </Ellipse>
+                        <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="DodgerBlue"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid>
+                                <Ellipse Opacity="0.5" StrokeThickness="10" StrokeDashArray="4 2">
+                                    <Ellipse.Fill>
+                                        <RadialGradientBrush GradientOrigin="0.5, 0.5"
+                                                                 Center="0.5, 0.5"
+                                                                 RadiusX="0.5"
+                                                                 RadiusY="0.5">
+                                            <GradientStop Color="AntiqueWhite" Offset="0.0"/>
+                                            <GradientStop Color="DeepPink" Offset="0.25"/>
+                                            <GradientStop Color="LightSalmon" Offset="0.75"/>
+                                            <GradientStop Color="Navy" Offset="1.0"/>
+                                        </RadialGradientBrush>
+                                    </Ellipse.Fill>
+                                    <Ellipse.Stroke>
+                                        <RadialGradientBrush GradientOrigin="0.5, 0.5"
+                                                                 Center="0.5, 0.5"
+                                                                 RadiusX="0.5" RadiusY="0.5">
+                                            <GradientStop Color="LightGoldenrodYellow" Offset="0.0"/>
+                                            <GradientStop Color="Ivory" Offset="0.25"/>
+                                            <GradientStop Color="Orchid" Offset="0.75"/>
+                                            <GradientStop Color="Magenta" Offset="1.0"/>
+                                        </RadialGradientBrush>
+                                    </Ellipse.Stroke>
+                                </Ellipse>
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--btnScore-->
+    <Style x:Key="btnScore" TargetType="{x:Type Button}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="FontSize" Value="28"/>
+        <Setter Property="Foreground" Value="Aquamarine"/>
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Ellipse StrokeThickness="10" StrokeDashArray="4 2">
+                            <Ellipse.Fill>
+                                <RadialGradientBrush GradientOrigin="0.5, 0.5"
+                                                         Center="0.5, 0.5"
+                                                         RadiusX="0.5" RadiusY="0.5">
+                                    <GradientStop Color="Snow" Offset="0.0"/>
+                                    <GradientStop Color="MediumTurquoise" Offset="0.25"/>
+                                    <GradientStop Color="RosyBrown" Offset="0.75"/>
+                                    <GradientStop Color="BlueViolet" Offset="1.0"/>
+                                </RadialGradientBrush>
+                            </Ellipse.Fill>
+                            <Ellipse.Stroke>
+                                <RadialGradientBrush GradientOrigin="0.5, 0.5"
+                                                         Center="0.5, 0.5"
+                                                         RadiusX="0.5" RadiusY="0.5">
+                                    <GradientStop Color="HotPink" Offset="0.0"/>
+                                    <GradientStop Color="LimeGreen" Offset="0.25"/>
+                                    <GradientStop Color="Cyan" Offset="0.75"/>
+                                    <GradientStop Color="Gray" Offset="1.0"/>
+                                </RadialGradientBrush>
+                            </Ellipse.Stroke>
+                        </Ellipse>
+                        <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="SpringGreen"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid>
+                                <Ellipse Opacity="0.5" StrokeThickness="10" StrokeDashArray="4 2">
+                                    <Ellipse.Fill>
+                                        <RadialGradientBrush GradientOrigin="0.5, 0.5"
+                                                                 Center="0.5, 0.5"
+                                                                 RadiusX="0.5"
+                                                                 RadiusY="0.5">
+                                            <GradientStop Color="Moccasin" Offset="0.0"/>
+                                            <GradientStop Color="Khaki" Offset="0.25"/>
+                                            <GradientStop Color="Maroon" Offset="0.75"/>
+                                            <GradientStop Color="Turquoise" Offset="1.0"/>
+                                        </RadialGradientBrush>
+                                    </Ellipse.Fill>
+                                    <Ellipse.Stroke>
+                                        <RadialGradientBrush GradientOrigin="0.5, 0.5"
+                                                                 Center="0.5, 0.5"
+                                                                 RadiusX="0.5" RadiusY="0.5">
+                                            <GradientStop Color="IndianRed" Offset="0.0"/>
+                                            <GradientStop Color="Snow" Offset="0.25"/>
+                                            <GradientStop Color="Navy" Offset="0.75"/>
+                                            <GradientStop Color="OrangeRed" Offset="1.0"/>
+                                        </RadialGradientBrush>
+                                    </Ellipse.Stroke>
+                                </Ellipse>
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--btnIntroduce-->
+    <Style x:Key="btnIntroduce" TargetType="{x:Type Button}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="FontSize" Value="28"/>
+        <Setter Property="Foreground" Value="Aquamarine"/>
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Ellipse StrokeThickness="10" StrokeDashArray="4 2">
+                            <Ellipse.Fill>
+                                <RadialGradientBrush GradientOrigin="0.5, 0.5"
+                                                         Center="0.5, 0.5"
+                                                         RadiusX="0.5" RadiusY="0.5">
+                                    <GradientStop Color="Chartreuse" Offset="0.0"/>
+                                    <GradientStop Color="Indigo" Offset="0.25"/>
+                                    <GradientStop Color="Salmon" Offset="0.75"/>
+                                    <GradientStop Color="PaleVioletRed" Offset="1.0"/>
+                                </RadialGradientBrush>
+                            </Ellipse.Fill>
+                            <Ellipse.Stroke>
+                                <RadialGradientBrush GradientOrigin="0.5, 0.5"
+                                                         Center="0.5, 0.5"
+                                                         RadiusX="0.5" RadiusY="0.5">
+                                    <GradientStop Color="Purple" Offset="0.0"/>
+                                    <GradientStop Color="Honeydew" Offset="0.25"/>
+                                    <GradientStop Color="Wheat" Offset="0.75"/>
+                                    <GradientStop Color="Salmon" Offset="1.0"/>
+                                </RadialGradientBrush>
+                            </Ellipse.Stroke>
+                        </Ellipse>
+                        <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="DodgerBlue"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid>
+                                <Ellipse Opacity="0.5" StrokeThickness="10" StrokeDashArray="4 2">
+                                    <Ellipse.Fill>
+                                        <RadialGradientBrush GradientOrigin="0.5, 0.5"
+                                                                 Center="0.5, 0.5"
+                                                                 RadiusX="0.5"
+                                                                 RadiusY="0.5">
+                                            <GradientStop Color="Aquamarine" Offset="0.0"/>
+                                            <GradientStop Color="GreenYellow" Offset="0.25"/>
+                                            <GradientStop Color="SlateGray" Offset="0.75"/>
+                                            <GradientStop Color="LavenderBlush" Offset="1.0"/>
+                                        </RadialGradientBrush>
+                                    </Ellipse.Fill>
+                                    <Ellipse.Stroke>
+                                        <RadialGradientBrush GradientOrigin="0.5, 0.5"
+                                                                 Center="0.5, 0.5"
+                                                                 RadiusX="0.5" RadiusY="0.5">
+                                            <GradientStop Color="DarkMagenta" Offset="0.0"/>
+                                            <GradientStop Color="ForestGreen" Offset="0.25"/>
+                                            <GradientStop Color="Turquoise" Offset="0.75"/>
+                                            <GradientStop Color="SlateGray" Offset="1.0"/>
+                                        </RadialGradientBrush>
+                                    </Ellipse.Stroke>
+                                </Ellipse>
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Button style-->
+    <Style TargetType="{x:Type Button}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Foreground" Value="#ffffff" />
+        <!-- "#ffffff" : white, "#000000" : black -->
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Rectangle Stroke="#0091ea" StrokeThickness="1" RadiusX="5" RadiusY="5">
+                            <Rectangle.Fill>
+                                <SolidColorBrush Color="#90a4ae" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="#ffffff" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid>
+                                <Rectangle Stroke="#0091ea" StrokeThickness="1" RadiusX="5" RadiusY="5">
+                                    <Rectangle.Fill>
+                                        <SolidColorBrush Color="#cddc39" />
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

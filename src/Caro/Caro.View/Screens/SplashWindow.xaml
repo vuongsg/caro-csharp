@@ -1,0 +1,66 @@
+﻿<Window x:Class="Caro.View.SplashWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:local="clr-namespace:Caro.View"
+        xmlns:viewModel="clr-namespace:Caro.ViewModel;assembly=Caro.ViewModel"
+        mc:Ignorable="d"
+        Height="475" Width="549" Background="Transparent" WindowStyle="None"
+        AllowsTransparency="True" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <viewModel:EventToCommand Command="{Binding LoadCommand}" CommandParameter="{Binding Children, ElementName=mainGrid}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Window.DataContext>
+        <viewModel:SplashViewModel />
+    </Window.DataContext>
+    <Grid x:Name="mainGrid">
+        <Rectangle RadiusX="20" RadiusY="20" StrokeThickness="5" Fill="Bisque" Stroke="LavenderBlush">
+
+        </Rectangle>
+        <Label Content="Chào" HorizontalAlignment="Left" Height="40" Width="60" Margin="70,67,0,0" VerticalAlignment="Top"
+                    FontSize="22" Foreground="OrangeRed" Name="lbl0" />
+        <Label Content="mừng" HorizontalAlignment="Left" Height="40" Width="70" Margin="130,67,0,0" VerticalAlignment="Top"
+                    FontSize="22" Foreground="OrangeRed" Name="lbl1" />
+        <Label Content="đến" HorizontalAlignment="Left" Height="40" Width="50" Margin="200,67,0,0" VerticalAlignment="Top"
+                    FontSize="22" Foreground="OrangeRed" Name="lbl2" />
+        <Label Content="với" HorizontalAlignment="Left" Height="40" Width="40" Margin="250,67,0,0" VerticalAlignment="Top"
+                    FontSize="22" Foreground="OrangeRed" Name="lbl3" />
+        <Label Content="thế" HorizontalAlignment="Left" Height="40" Width="50" Margin="290,67,0,0" VerticalAlignment="Top"
+                    FontSize="22" Foreground="OrangeRed" Name="lbl4" />
+        <Label Content="giới" HorizontalAlignment="Left" Height="40" Width="50" Margin="340,67,0,0" VerticalAlignment="Top"
+                    FontSize="22" Foreground="OrangeRed" Name="lbl5" />
+        <Label Content="Caro" HorizontalAlignment="Left" Height="40" Width="105" Margin="390,67,0,0" VerticalAlignment="Top"
+                    FontSize="22" Foreground="OrangeRed" Name="lbl6" />
+
+        <Label Content="Cuộc" HorizontalAlignment="Left" Height="40" Width="60" Margin="70,107,0,0" VerticalAlignment="Top"
+                    FontSize="22" Foreground="OrangeRed" Name="lbl7" />
+        <Label Content="tỉ" HorizontalAlignment="Left" Height="40" Width="30" Margin="130,107,0,0" VerticalAlignment="Top"
+                    FontSize="22" Foreground="OrangeRed" Name="lbl8" />
+        <Label Content="thí" HorizontalAlignment="Left" Height="40" Width="40" Margin="160,107,0,0" VerticalAlignment="Top"
+                    FontSize="22" Foreground="OrangeRed" Name="lbl9" />
+        <Label Content="không" HorizontalAlignment="Left" Height="40" Width="70" Margin="200,107,0,0" VerticalAlignment="Top"
+                    FontSize="22" Foreground="OrangeRed" Name="lbl10" />
+        <Label Content="khoan" HorizontalAlignment="Left" Height="40" Width="70" Margin="270,107,0,0" VerticalAlignment="Top"
+                    FontSize="22" Foreground="OrangeRed" Name="lbl11" />
+        <Label Content="nhượng" HorizontalAlignment="Left" Height="40" Width="90" Margin="340,107,0,0" VerticalAlignment="Top"
+                    FontSize="22" Foreground="OrangeRed" Name="lbl12" />
+        <Label Content="giữa" HorizontalAlignment="Left" Height="40" Width="60" Margin="430,107,0,0" VerticalAlignment="Top"
+                    FontSize="22" Foreground="OrangeRed" Name="lbl13" />
+        <Label Content="X" HorizontalAlignment="Left" Height="100" Width="80" Margin="95,147,0,0" VerticalAlignment="Top"
+                    FontSize="60" Foreground="OrangeRed" Name="lbl14"
+                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        <Label Content="vs" HorizontalAlignment="Left" Height="100" Width="80" Margin="224,147,0,0" VerticalAlignment="Top"
+                    FontSize="60" Foreground="OrangeRed" Name="lbl15"
+                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        <Label Content="O" HorizontalAlignment="Left" Height="100" Width="80" Margin="353,147,0,0" VerticalAlignment="Top"
+                    FontSize="60" Foreground="OrangeRed" Name="lbl16"
+                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+
+        <Image HorizontalAlignment="Left" Height="143" Margin="53,278,0,0" VerticalAlignment="Top" Width="459"
+                     Source="/Caro.View;component/Resources/imgSplash.png" Stretch="Fill" />
+    </Grid>
+</Window>
