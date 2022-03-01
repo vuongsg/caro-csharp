@@ -2,6 +2,8 @@
 I wrote this Caro game the first time in 2013 with code-behind technical as common.
 4 years later (2017), the second version was released with MVVM pattern. 
 
+![Alt text](https://github.com/vuongsg/caro-csharp/blob/master/screenshot.png?raw=true "Title")
+
 ## Tech stack
 - C#
 - .NET5
