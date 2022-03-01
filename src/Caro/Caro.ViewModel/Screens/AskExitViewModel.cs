@@ -57,10 +57,7 @@ namespace Caro.ViewModel
                 WantToExit.Yes = false;
             }
 
-            if (win != null)
-            {
-                win.Close();
-            }
+            win?.Close();
         }
         #endregion
     }

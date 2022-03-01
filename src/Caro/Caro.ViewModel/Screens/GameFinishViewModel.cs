@@ -50,26 +50,23 @@ namespace Caro.ViewModel
 
         private void accessMessage_Load(AccessText at)
         {
-            if (GameFinishStatus.Status == GameState.XWin)
-            {
-                at.Text = "You win. Congratulations!";
-            }
-            else if (GameFinishStatus.Status == GameState.OWin)
-            {
-                at.Text = "You lose. Don't be sad!";
-            }
-            else
-            {
-                at.Text = "Game draws!";
-            }
+            switch (GameFinishStatus.Status)
+			{
+                case GameState.XWin:
+                    at.Text = "You win. Congratulations!";
+                    break;
+                case GameState.OWin:
+                    at.Text = "You lose. Don't be sad!";
+                    break;
+                default:
+                    at.Text = "Game draws!";
+                    break;
+			}
         }
 
         private void Exit()
         {
-            if (win != null)
-            {
-                win.Close();
-            }
+            win?.Close();
         }
         #endregion
     }

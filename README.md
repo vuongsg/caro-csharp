@@ -11,4 +11,4 @@ I wrote this Caro game the first time in 2013 with code-behind technical as comm
 
 ## Intention for near future
 - Change UI to English totally
-- Migrate .NET6 (since most developers aren't still using VS2022 so far, so it's good to end with .NET5 at this time)
+- Migrate to .NET6 (since most developers aren't still using VS2022 so far, so it's good to end with .NET5 at this time)
