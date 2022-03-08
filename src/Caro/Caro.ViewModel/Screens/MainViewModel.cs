@@ -637,7 +637,7 @@ namespace Caro.ViewModel
         // Nếu có n quân địch thì các ô trống được cộng Dscore[n] điểm.
         // Như thế điểm các ô trống sẽ được cộng dồn (do một ô được quét 5 lần mỗi chiều).
         // Điều này có ý nghĩa trong việc xác định các nước đi ăn đôi, ăn ba.
-        private void Eval(Player player, ref EvalBoard evalBoard)
+        private void Eval(Player player, EvalBoard evalBoard)
         {
             int eX, eO;
             int r, c;
@@ -1116,7 +1116,7 @@ namespace Caro.ViewModel
             Model.Point oo = new Model.Point();
             int count = 0;
 
-            Eval(player, ref evalBoard);
+            Eval(player, evalBoard);
             // Chọn ra 3 ô trống có điểm cao nhất của máy tính
             for (int i = 0; i < maxMove; i++)
             {
@@ -1146,7 +1146,7 @@ namespace Caro.ViewModel
 
                     // Tìm 3 ô trống có điểm cao nhất(nước đi tối ưu của đối thủ)
                     Player player1 = new Player("O");
-                    Eval(player1, ref evalBoard);
+                    Eval(player1, evalBoard);
                     for (int i = 0; i < maxMove; i++)
                     {
                         oo = evalBoard.MaxPos();
@@ -1187,7 +1187,7 @@ namespace Caro.ViewModel
 
                     // Tìm 3 ô trống có điểm cao nhất(nước đi tối ưu của đối thủ)
                     Player player1 = new Player("X");
-                    Eval(player1, ref evalBoard);
+                    Eval(player1, evalBoard);
                     for (int i = 0; i < maxMove; i++)
                     {
                         xx = evalBoard.MaxPos();
@@ -1365,7 +1365,7 @@ namespace Caro.ViewModel
                         }
                         else
                         {
-                            Eval(computer, ref evalBoard);
+                            Eval(computer, evalBoard);
 							Model.Point p = evalBoard.MaxPos();
                             x = p.X;
                             y = p.Y;
@@ -1411,18 +1411,12 @@ namespace Caro.ViewModel
 
         private void OpenScoreWindow()
         {
-            if (ShowScoreWindow != null)
-            {
-                ShowScoreWindow(this, EventArgs.Empty);
-            }
+            ShowScoreWindow?.Invoke(this, EventArgs.Empty);
         }
 
         private void OpenIntroduceWindow()
         {
-            if (ShowIntroduceWindow != null)
-            {
-                ShowIntroduceWindow(this, EventArgs.Empty);
-            }
+            ShowIntroduceWindow?.Invoke(this, EventArgs.Empty);
         }
         #endregion
     }

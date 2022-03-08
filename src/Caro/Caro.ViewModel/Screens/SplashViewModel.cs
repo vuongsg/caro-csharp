@@ -62,10 +62,7 @@ namespace Caro.ViewModel
             else if (index == 17)
             {
                 Thread.Sleep(500);
-                if (ShowMainWindow != null)
-                {
-                    ShowMainWindow(this, EventArgs.Empty);
-                }
+                ShowMainWindow?.Invoke(this, EventArgs.Empty);
             }
         }
         #endregion
