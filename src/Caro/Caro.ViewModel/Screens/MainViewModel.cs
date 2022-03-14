@@ -211,7 +211,7 @@ namespace Caro.ViewModel
                     board[i, j] = empty;
         }
 
-        private void VeDuongKe()
+        private void DrawLines()
         {
             // Vẽ đường kẻ ngang, 20 ô thì sẽ có 21 đường kẻ
             for (int i = 0; i < 21; i++)
@@ -241,7 +241,7 @@ namespace Caro.ViewModel
         }
 
         // Vẽ lại ô cờ khi vẽ X hoặc O
-        private void VeMotO(int x, int y)
+        private void DrawCell(int x, int y)
         {
             Rectangle rec = new Rectangle();
             rec.Width = rec.Height = size;
@@ -268,10 +268,10 @@ namespace Caro.ViewModel
             rec.Fill = Brushes.GreenYellow;
             grid.Children.Add(rec);
 
-            VeDuongKe();
+            DrawLines();
         }
 
-        private void Ve_X(int x, int y)
+        private void Draw_X(int x, int y)
         {
             Image imgX = new Image();
             imgX.Source = bitX;
@@ -280,10 +280,10 @@ namespace Caro.ViewModel
             imgX.Width = imgX.Height = size;
             imgX.Margin = new Thickness((x + 1) * size, (y + 1) * size + 30, 0, 0);
             grid.Children.Add(imgX);
-            VeMotO(x, y);   // vì mỗi bàn cờ bao quanh bởi đường kẻ đen nên phải vẽ lại các đgkẻ
+            DrawCell(x, y);   // vì mỗi bàn cờ bao quanh bởi đường kẻ đen nên phải vẽ lại các đgkẻ
         }
 
-        private void Ve_O(int x, int y)
+        private void Draw_O(int x, int y)
         {
             Image imgO = new Image();
             imgO.Source = bitO;
@@ -292,11 +292,11 @@ namespace Caro.ViewModel
             imgO.Width = imgO.Height = size;
             imgO.Margin = new Thickness((x + 1) * size, (y + 1) * size + 30, 0, 0);
             grid.Children.Add(imgO);
-            VeMotO(x, y);
+            DrawCell(x, y);
         }
 
         // Vẽ đường kết thúc xác định 5 quân ăn
-        private void VeLineWin(string str, int colWin, int rowWin, int colWin2, int rowWin2)
+        private void DrawLineWin(string str, int colWin, int rowWin, int colWin2, int rowWin2)
         {
             Line line = new Line();
 
@@ -643,7 +643,7 @@ namespace Caro.ViewModel
             int r, c;
 
             evalBoard.ResetBoard();
-            // Quét theo hàng
+            // Scan rows
             for (r = 0; r < row; r++)
                 for (c = 0; c < col - 4; c++)
                 {
@@ -751,7 +751,7 @@ namespace Caro.ViewModel
                     }
                 }
 
-            // Quét theo cột
+            // Scan columns
             for (c = 0; c < col; c++)
                 for (r = 0; r < row - 4; r++)
                 {
@@ -855,7 +855,7 @@ namespace Caro.ViewModel
                     }
                 }
 
-            // Quét đường chéo xuống
+            // Scan forward diagonals
             for (c = 0; c < col - 4; c++)
                 for (r = 0; r < row - 4; r++)
                 {
@@ -979,7 +979,7 @@ namespace Caro.ViewModel
                     }
                 }
 
-            // Quét đường chéo lên
+            // Scan backward diagonals
             for (c = 0; c < col - 4; c++)
                 for (r = 4; r < row; r++)
                 {
@@ -1234,7 +1234,7 @@ namespace Caro.ViewModel
 
         private void Play()
         {
-            if (isFirst)     // bắt đầu chơi ván đầu tiên
+            if (isFirst)     // let's get started for the first game
             {
                 isFirst = false;
                 isStart = true;
@@ -1244,14 +1244,14 @@ namespace Caro.ViewModel
                 int i = randCls.Next(7, 13);
                 Thread.Sleep(250);
                 int j = randCls.Next(7, 13);
-                Ve_O(i, j);
+                Draw_O(i, j);
                 board[i, j] = O;
                 isX = true;
                 emptyCell--;
             }
             else
             {
-                if (isEnd == true)       // ván trước đã kết thúc
+                if (isEnd == true)       // the current game ended
                 {
                     isStart = true;
                     isEnd = false;
@@ -1259,21 +1259,21 @@ namespace Caro.ViewModel
                     evalBoard = new EvalBoard();
                     VeBanCo();
                     emptyCell = 400;
-                    if (ComputerWin == 2)    // computer đi trước
+                    if (ComputerWin == 2)    // computer goes first
                     {
                         Random randCls = new Random();
                         int i = randCls.Next(7, 13);
                         Thread.Sleep(250);
                         int j = randCls.Next(7, 13);
-                        Ve_O(i, j);
+                        Draw_O(i, j);
                         board[i, j] = O;
                         isX = true;
                         emptyCell--;
                     }
                 }
-                else    // ván trước chưa kết thúc
+                else    // the current game not ending
                 {
-                    if (emptyCell < 400)        // bàn cờ đã có ít nhất một quân cờ được đánh
+                    if (emptyCell < 400)        // at least non-empty cell in the board
                     {
                         if (ShowQuestionPlayWindow != null)
                         {
@@ -1287,13 +1287,13 @@ namespace Caro.ViewModel
                             evalBoard = new EvalBoard();
                             VeBanCo();
                             emptyCell = 400;
-                            if (ComputerWin == 2)    // computer đi trước
+                            if (ComputerWin == 2)    // computer goes first
                             {
                                 Random randCls = new Random();
                                 int i = randCls.Next(7, 13);
                                 Thread.Sleep(250);
                                 int j = randCls.Next(7, 13);
-                                Ve_O(i, j);
+                                Draw_O(i, j);
                                 board[i, j] = O;
                                 isX = true;
                                 emptyCell--;
@@ -1322,14 +1322,14 @@ namespace Caro.ViewModel
                 {
                     if (isX)
                     {
-                        Ve_X(x, y);
+                        Draw_X(x, y);
                         board[x, y] = X;
                         emptyCell--;
                         isX = !isX;
                         state = CheckEnd(x, y, ref str, ref colWin, ref rowWin, ref colWin2, ref rowWin2);
                         if (state == GameState.XWin)
                         {
-                            VeLineWin(str, colWin, rowWin, colWin2, rowWin2);
+                            DrawLineWin(str, colWin, rowWin, colWin2, rowWin2);
                             Thread.Sleep(120);
                             GameFinishStatus.Status = GameState.XWin;
                             if (ShowGameFinishWindow != null)
@@ -1370,14 +1370,14 @@ namespace Caro.ViewModel
                             x = p.X;
                             y = p.Y;
                         }
-                        Ve_O(x, y);
+                        Draw_O(x, y);
                         board[x, y] = O;
                         emptyCell--;
                         isX = !isX;
                         state = CheckEnd(x, y, ref str, ref colWin, ref rowWin, ref colWin2, ref rowWin2);
                         if (state == GameState.OWin)
                         {
-                            VeLineWin(str, colWin, rowWin, colWin2, rowWin2);
+                            DrawLineWin(str, colWin, rowWin, colWin2, rowWin2);
                             Thread.Sleep(120);
                             GameFinishStatus.Status = GameState.OWin;
                             if (ShowGameFinishWindow != null)
