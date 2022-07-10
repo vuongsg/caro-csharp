@@ -76,24 +76,24 @@
                 <Rectangle Width="120" Height="5" Stroke="Black" StrokeThickness="5" />
                 <TextBlock FontSize="18">
                     <TextBlock.Inlines>
-                        <Run Text="Chương trình" FontWeight="Bold" />
+                        <Run Text="About program:" FontWeight="Bold" />
                         <LineBreak />
-                        <Run Text="- Các phiên bản" />
+                        <Run Text="- Versions" />
                         <LineBreak />
-                        <Run Text="  + Phiên bản 2.0 - 2017 (mới nhất)" />
+                        <Run Text="  + 2.0 - 2017 (latest)" />
                         <LineBreak />
-                        <Run Text="  + Phiên bản 1.0 - 2013" />
+                        <Run Text="  + 1.0 - 2013" />
                         <LineBreak />
                     </TextBlock.Inlines>
                 </TextBlock>
                 <Rectangle Width="120"  Height="5" Stroke="Black" StrokeThickness="5" />
                 <TextBlock FontSize="18">
                     <TextBlock.Inlines>
-                        <Run Text="Tác giả" FontWeight="Bold" />
+                        <Run Text="Author:" FontWeight="Bold" />
                         <LineBreak />
                         <Run Text="- Vuong Nguyen" />
                         <LineBreak />
-                        <Run Text="- Liên hệ: "/>
+                        <Run Text="- Contact: "/>
                         <Hyperlink NavigateUri="https://github.com/vuongsg" Command="{Binding Link_RequestNavigateCommand}"
                                          CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
                             my GitHub
@@ -104,24 +104,23 @@
                 <Rectangle Width="120"  Height="5" Stroke="Black" StrokeThickness="5" />
                 <TextBlock FontSize="18">
                     <TextBlock.Inlines>
-                        <Run Text="Hướng dẫn chơi" FontWeight="Bold" />
+                        <Run Text="How play:" FontWeight="Bold" />
                         <LineBreak />
                         <Run Text="- You act X, computer acts O" />
                         <LineBreak />
                         <Run Text="- In the first game, computer goes first" />
                         <LineBreak />
-                        <Run Text="- Since the second game on, guy who lost in previouse game will goes first" />
+                        <Run Text="- Since the second game on, the player who lost in " />
                         <LineBreak />
-                        <Run Text="- Chương trình áp dụng luật chặn kín 2 đầu, nghĩa là bạn đi" />
+                        <Run Text="previous game will go first" />
                         <LineBreak />
-                        <Run Text="được 5 quân liền nhau nhưng bị chặn kín thì không ăn được." />
+                        <Run Text="- If player has 5 consecutive points, but is covered before " />
                         <LineBreak />
-                        <Run Text="Ngược lại nếu bị chặn nhưng không kín thì vẫn ăn" />
+                        <Run Text="the first and after the last ones by competitor, " />
                         <LineBreak />
+                        <Run Text="you won't be considered win." />
                         <LineBreak />
-                        <Run Text="Chúc mọi người chơi vui và cố gắng đừng để thua NHIỀU" FontWeight="Bold" />
-                        <LineBreak />
-                        <Run Text="quá nhé. Ahihi ^_^" FontWeight="Bold" />
+                        <Run Text="Happy play ^_^" FontWeight="Bold" />
                     </TextBlock.Inlines>
                 </TextBlock>
             </StackPanel>

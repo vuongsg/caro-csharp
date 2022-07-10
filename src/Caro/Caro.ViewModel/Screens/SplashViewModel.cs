@@ -18,6 +18,7 @@ namespace Caro.ViewModel
         List<Label> lstLabels;
         DispatcherTimer timer;
         int index;
+        int countLabels;
         #endregion
 
         #region Properties
@@ -44,8 +45,10 @@ namespace Caro.ViewModel
                     lstLabels.Add(label);
                 }
             }
-            lstLabels = lstLabels.OrderBy(m => int.Parse(m.Name.Substring(3))).ToList();    // because name of each label starts with "lbl", hence
-                                                                                                                                  // we need to cut three first letters
+
+            countLabels = lstLabels.Count;
+            lstLabels = lstLabels.OrderBy(m => int.Parse(m.Name.Substring(3))).ToList();    // because name of each label starts with "lbl",
+                                                                                            // hence we need to trim three first letters
             index = 0;
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(400);
@@ -55,11 +58,11 @@ namespace Caro.ViewModel
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            if (index < 17)     // use "if", can not use "while"
+            if (index < countLabels)     // use "if", can not use "while"
             {
                 lstLabels[index++].Visibility = Visibility.Visible;
             }
-            else if (index == 17)
+            else if (index == countLabels)
             {
                 Thread.Sleep(500);
                 ShowMainWindow?.Invoke(this, EventArgs.Empty);

@@ -43,4 +43,8 @@
     <Resource Include="Resources\pic-introduce.jpg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
 </Project>
