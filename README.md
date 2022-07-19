@@ -4,6 +4,9 @@ I wrote this Caro game the first time in 2013 with code-behind technical as comm
 
 ![Alt text](https://github.com/vuongsg/caro-csharp/blob/master/screenshot.png?raw=true "Title")
 
+## Download executable file
+[Caro.exe](https://tinyurl.com/2rsjnttt "Caro - Vuong Nguyen")
+
 ## Tech stack
 - C#
 - .NET5
