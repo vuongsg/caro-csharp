@@ -2,22 +2,24 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
+    <TargetFramework>net4.8-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <PublishSingleFile Condition="'$(Configuration)' == 'Release'">true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <DebugType>embedded</DebugType>
+    <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <PackageId>Caro</PackageId>
+    <Authors>Vuong Nguyen</Authors>
+    <Product>Caro</Product>
+    <Copyright>Vuong Nguyen</Copyright>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <Description>Caro</Description>
+    <AssemblyTitle>Caro</AssemblyTitle>
+    <Version>2.0.0</Version>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Resources\bg-exit-hover.png" />
-    <None Remove="Resources\bg-exit.png" />
-    <None Remove="Resources\bg-minimized-hover.png" />
-    <None Remove="Resources\bg-minimized.png" />
-    <None Remove="Resources\icon.ico" />
-    <None Remove="Resources\imgO.png" />
-    <None Remove="Resources\imgSplash.png" />
-    <None Remove="Resources\imgX.png" />
-    <None Remove="Resources\pic-introduce.jpg" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Caro.ViewModel\Caro.ViewModel.csproj" />
@@ -45,6 +47,17 @@
 
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Costura.Fody" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Fody" Version="6.9.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

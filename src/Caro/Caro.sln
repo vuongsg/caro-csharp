@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caro.View", "Caro.View\Caro.View.csproj", "{933EBB95-2EB8-404C-BDAB-DEE11F09B5EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Caro.View", "Caro.View\Caro.View.csproj", "{933EBB95-2EB8-404C-BDAB-DEE11F09B5EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caro.ViewModel", "Caro.ViewModel\Caro.ViewModel.csproj", "{7E7CDFD6-D93E-4D09-AF28-21CE0B736801}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Caro.ViewModel", "Caro.ViewModel\Caro.ViewModel.csproj", "{7E7CDFD6-D93E-4D09-AF28-21CE0B736801}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caro.Model", "Caro.Model\Caro.Model.csproj", "{06F6FB18-8B33-452B-864E-2E84E69A27BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Caro.Model", "Caro.Model\Caro.Model.csproj", "{06F6FB18-8B33-452B-864E-2E84E69A27BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caro.Helper", "Caro.Helper\Caro.Helper.csproj", "{F2C42C00-DCAD-40B5-9B20-B22B2F102D24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Caro.Helper", "Caro.Helper\Caro.Helper.csproj", "{F2C42C00-DCAD-40B5-9B20-B22B2F102D24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

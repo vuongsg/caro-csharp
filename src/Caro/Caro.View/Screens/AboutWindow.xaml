@@ -93,12 +93,6 @@
                         <LineBreak />
                         <Run Text="- Vuong Nguyen" />
                         <LineBreak />
-                        <Run Text="- Contact: "/>
-                        <Hyperlink NavigateUri="https://github.com/vuongsg" Command="{Binding Link_RequestNavigateCommand}"
-                                         CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
-                            my GitHub
-                        </Hyperlink>
-                        <LineBreak />
                     </TextBlock.Inlines>
                 </TextBlock>
                 <Rectangle Width="120"  Height="5" Stroke="Black" StrokeThickness="5" />
@@ -108,19 +102,19 @@
                         <LineBreak />
                         <Run Text="- You act X, computer acts O" />
                         <LineBreak />
-                        <Run Text="- In the first game, computer goes first" />
+                        <Run Text="- In the very first game, computer goes first" />
                         <LineBreak />
-                        <Run Text="- Since the second game on, the player who lost in " />
+                        <Run Text="- From the second game on, the player who lost in " />
                         <LineBreak />
                         <Run Text="previous game will go first" />
                         <LineBreak />
-                        <Run Text="- If player has 5 consecutive points, but is covered before " />
+                        <Run Text="- If a player has 5 consecutive points, but the winning line " />
                         <LineBreak />
-                        <Run Text="the first and after the last ones by competitor, " />
+                        <Run Text="is covered before the first and after the last ones by" />
                         <LineBreak />
-                        <Run Text="you won't be considered win." />
+                        <Run Text="competitor, it's not the win." />
                         <LineBreak />
-                        <Run Text="Happy play ^_^" FontWeight="Bold" />
+                        <Run Text="Have fun playing ^_^" FontWeight="Bold" />
                     </TextBlock.Inlines>
                 </TextBlock>
             </StackPanel>
