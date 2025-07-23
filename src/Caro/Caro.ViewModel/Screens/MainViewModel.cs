@@ -23,9 +23,9 @@ namespace Caro.ViewModel
         #region Fields
         Window win;
         Grid grid;
-        const int left = 33, top = 33, size = 33, col = 20, row = 20;
-        const int right = left + col * size;
-        const int bottom = top + row * size;
+        const int left = 33, top = 33, cellSize = 33, col = 20, row = 20;
+        const int right = left + col * cellSize;
+        const int bottom = top + row * cellSize;
         const int X = 1, O = -1, empty = 0;
         const int maxDepth = 11, maxMove = 3;
         int[] AScore = new int[] { 0, 2, 18, 162, 1458 };   // mảng điểm tấn công
@@ -34,6 +34,7 @@ namespace Caro.ViewModel
 		Model.Point[] winMove = new Model.Point[maxDepth + 1];
 		Model.Point[] XMove = new Model.Point[maxMove];
         Model.Point[] OMove = new Model.Point[maxMove];
+        Model.Point currentSelectedCell;
         int emptyCell = 400;    // var emptyCell does not relate to FindMove method, so in method FindMove when trying not need to
                                           // lessen emptyCell
         int depth;
@@ -209,6 +210,8 @@ namespace Caro.ViewModel
             for (int i = 0; i < col; i++)
                 for (int j = 0; j < row; j++)
                     board[i, j] = empty;
+
+            currentSelectedCell = new Model.Point(-1, -1);
         }
 
         private void DrawLines()
@@ -218,7 +221,7 @@ namespace Caro.ViewModel
             {
                 Line line = new Line();
                 line.X1 = left;
-                line.Y1 = (i + 1) * size + 30;   // thêm + 30 để cách thanh tiêu đề
+                line.Y1 = (i + 1) * cellSize + 30;   // thêm + 30 để cách thanh tiêu đề
                 line.X2 = right;
                 line.Y2 = line.Y1;
                 line.StrokeThickness = 2;
@@ -230,7 +233,7 @@ namespace Caro.ViewModel
             for (int i = 0; i < 21; i++)
             {
                 Line line = new Line();
-                line.X1 = (i + 1) * size;
+                line.X1 = (i + 1) * cellSize;
                 line.Y1 = top + 30;      // thêm + 30 để cách thanh tiêu đề
                 line.X2 = line.X1;
                 line.Y2 = bottom + 30;   // thêm + 30 để cách thanh tiêu đề
@@ -240,31 +243,47 @@ namespace Caro.ViewModel
             }
         }
 
+        private Rectangle CreateCell(Thickness margin)
+		{
+            Rectangle rec = new Rectangle();
+            rec.Width = rec.Height = cellSize;
+
+            // Bắt buộc phải có 3 dòng sau để khỏi dùng Canvas
+            rec.HorizontalAlignment = HorizontalAlignment.Left;
+            rec.VerticalAlignment = VerticalAlignment.Top;
+            rec.Margin = margin;
+
+            return rec;
+        }
+
         // Vẽ lại ô cờ khi vẽ X hoặc O
         private void DrawCell(int x, int y)
         {
-            Rectangle rec = new Rectangle();
-            rec.Width = rec.Height = size;
-            rec.HorizontalAlignment = HorizontalAlignment.Left;
-            rec.VerticalAlignment = VerticalAlignment.Top;
-            rec.Margin = new Thickness((x + 1) * size, (y + 1) * size + 30, 0, 0);
-            //rec.StrokeThickness = 2;
-            rec.Stroke = Brushes.Black;
-            grid.Children.Add(rec);
+            Rectangle cell = CreateCell(new Thickness((x + 1) * cellSize, (y + 1) * cellSize + 30, 0, 0));
+            cell.Stroke = Brushes.Black;
+            grid.Children.Add(cell);
+        }
+
+        private void DrawCurrentSelectedCell()
+        {
+            if (currentSelectedCell.X == -1)
+                return;
+
+            Rectangle cell = CreateCell(new Thickness((currentSelectedCell.X + 1) * cellSize, (currentSelectedCell.Y + 1) * cellSize + 30, 0, 0));
+            cell.StrokeThickness = 3.5;
+            cell.Stroke = Brushes.DarkSlateBlue;
+            cell.StrokeDashArray = DoubleCollection.Parse("1 1");
+            grid.Children.Add(cell);
         }
 
         private void VeBanCo()
         {
             // Vẽ hình chữ nhật bao quanh
-            Rectangle rec = new Rectangle();
+            Rectangle rec = CreateCell(new Thickness(left, top + 30, 0, 0));    //thêm + 30 để cách thanh tiêu đề
             //Canvas.SetLeft(rec, left);
             //Canvas.SetTop(rec, top + 30);    // thêm + 30 để cách thanh tiêu đề
-            rec.Width = col * size;
-            rec.Height = row * size;
-            // Bắt buộc phải có 3 dòng sau để khỏi dùng Canvas
-            rec.HorizontalAlignment = HorizontalAlignment.Left;
-            rec.VerticalAlignment = VerticalAlignment.Top;
-            rec.Margin = new Thickness(left, top + 30, 0, 0); // thêm + 30 để cách thanh tiêu đề
+            rec.Width = col * cellSize;
+            rec.Height = row * cellSize;
             rec.Fill = Brushes.GreenYellow;
             grid.Children.Add(rec);
 
@@ -277,8 +296,8 @@ namespace Caro.ViewModel
             imgX.Source = bitX;
             imgX.HorizontalAlignment = HorizontalAlignment.Left;
             imgX.VerticalAlignment = VerticalAlignment.Top;
-            imgX.Width = imgX.Height = size;
-            imgX.Margin = new Thickness((x + 1) * size, (y + 1) * size + 30, 0, 0);
+            imgX.Width = imgX.Height = cellSize;
+            imgX.Margin = new Thickness((x + 1) * cellSize, (y + 1) * cellSize + 30, 0, 0);
             grid.Children.Add(imgX);
             DrawCell(x, y);   // vì mỗi bàn cờ bao quanh bởi đường kẻ đen nên phải vẽ lại các đgkẻ
         }
@@ -289,8 +308,8 @@ namespace Caro.ViewModel
             imgO.Source = bitO;
             imgO.HorizontalAlignment = HorizontalAlignment.Left;
             imgO.VerticalAlignment = VerticalAlignment.Top;
-            imgO.Width = imgO.Height = size;
-            imgO.Margin = new Thickness((x + 1) * size, (y + 1) * size + 30, 0, 0);
+            imgO.Width = imgO.Height = cellSize;
+            imgO.Margin = new Thickness((x + 1) * cellSize, (y + 1) * cellSize + 30, 0, 0);
             grid.Children.Add(imgO);
             DrawCell(x, y);
         }
@@ -302,31 +321,31 @@ namespace Caro.ViewModel
 
             if (str == "row")
             {
-                line.X1 = (colWin + 1) * size;
-                line.Y1 = (rowWin + 1) * size + 30 + size / 2;
-                line.X2 = (colWin2 + 1) * size + size;
-                line.Y2 = (rowWin2 + 1) * size + 30 + size / 2;
+                line.X1 = (colWin + 1) * cellSize;
+                line.Y1 = (rowWin + 1) * cellSize + 30 + cellSize / 2;
+                line.X2 = (colWin2 + 1) * cellSize + cellSize;
+                line.Y2 = (rowWin2 + 1) * cellSize + 30 + cellSize / 2;
             }
             else if (str == "col")
             {
-                line.X1 = (colWin + 1) * size + size / 2;
-                line.Y1 = (rowWin + 1) * size + 30;
-                line.X2 = (colWin2 + 1) * size + size / 2;
-                line.Y2 = (rowWin2 + 1) * size + 30 + size;
+                line.X1 = (colWin + 1) * cellSize + cellSize / 2;
+                line.Y1 = (rowWin + 1) * cellSize + 30;
+                line.X2 = (colWin2 + 1) * cellSize + cellSize / 2;
+                line.Y2 = (rowWin2 + 1) * cellSize + 30 + cellSize;
             }
             else if (str == "cheo xuong")
             {
-                line.X1 = (colWin + 1) * size;
-                line.Y1 = (rowWin + 1) * size + 30;
-                line.X2 = (colWin2 + 1) * size + size;
-                line.Y2 = (rowWin2 + 1) * size + 30 + size;
+                line.X1 = (colWin + 1) * cellSize;
+                line.Y1 = (rowWin + 1) * cellSize + 30;
+                line.X2 = (colWin2 + 1) * cellSize + cellSize;
+                line.Y2 = (rowWin2 + 1) * cellSize + 30 + cellSize;
             }
             else if (str == "cheo len")
             {
-                line.X1 = (colWin + 1) * size;
-                line.Y1 = (rowWin + 1) * size + 30 + size;
-                line.X2 = (colWin2 + 1) * size + size;
-                line.Y2 = (rowWin2 + 1) * size + 30;
+                line.X1 = (colWin + 1) * cellSize;
+                line.Y1 = (rowWin + 1) * cellSize + 30 + cellSize;
+                line.X2 = (colWin2 + 1) * cellSize + cellSize;
+                line.Y2 = (rowWin2 + 1) * cellSize + 30;
             }
             line.Stroke = Brushes.Yellow;
             line.StrokeThickness = 10;
@@ -1244,7 +1263,9 @@ namespace Caro.ViewModel
                 int i = randCls.Next(7, 13);
                 Thread.Sleep(250);
                 int j = randCls.Next(7, 13);
+                currentSelectedCell = new Model.Point(i, j);
                 Draw_O(i, j);
+                DrawCurrentSelectedCell();
                 board[i, j] = O;
                 isX = true;
                 emptyCell--;
@@ -1265,7 +1286,9 @@ namespace Caro.ViewModel
                         int i = randCls.Next(7, 13);
                         Thread.Sleep(250);
                         int j = randCls.Next(7, 13);
+                        currentSelectedCell = new Model.Point(i, j);
                         Draw_O(i, j);
+                        DrawCurrentSelectedCell();
                         board[i, j] = O;
                         isX = true;
                         emptyCell--;
@@ -1293,7 +1316,9 @@ namespace Caro.ViewModel
                                 int i = randCls.Next(7, 13);
                                 Thread.Sleep(250);
                                 int j = randCls.Next(7, 13);
+                                currentSelectedCell = new Model.Point(i, j);
                                 Draw_O(i, j);
+                                DrawCurrentSelectedCell();
                                 board[i, j] = O;
                                 isX = true;
                                 emptyCell--;
@@ -1316,16 +1341,25 @@ namespace Caro.ViewModel
                 colWin = rowWin = colWin2 = rowWin2 = -1;
                 GameState state;
 
-                int x = (int)(e.GetPosition(win).X / size) - 1;
-                int y = (int)((e.GetPosition(win).Y - 30) / size) - 1;
+                int x = (int)(e.GetPosition(win).X / cellSize) - 1;
+                int y = (int)((e.GetPosition(win).Y - 30) / cellSize) - 1;
                 if (board[x, y] == empty)
                 {
                     if (isX)
                     {
+                        //Clear border of previous selected cell
+                        if (currentSelectedCell.X != -1 && board[currentSelectedCell.X, currentSelectedCell.Y] == X)
+                            Draw_X(currentSelectedCell.X, currentSelectedCell.Y);
+                        else if (currentSelectedCell.X != -1 && board[currentSelectedCell.X, currentSelectedCell.Y] == O)
+                            Draw_O(currentSelectedCell.X, currentSelectedCell.Y);
+
+                        currentSelectedCell = new Model.Point(x, y);
                         Draw_X(x, y);
+                        DrawCurrentSelectedCell();
                         board[x, y] = X;
                         emptyCell--;
                         isX = !isX;
+
                         state = CheckEnd(x, y, ref str, ref colWin, ref rowWin, ref colWin2, ref rowWin2);
                         if (state == GameState.XWin)
                         {
@@ -1370,10 +1404,20 @@ namespace Caro.ViewModel
                             x = p.X;
                             y = p.Y;
                         }
+
+                        //Clear border of previous selected cell
+                        if (currentSelectedCell.X != -1 && board[currentSelectedCell.X, currentSelectedCell.Y] == X)
+                            Draw_X(currentSelectedCell.X, currentSelectedCell.Y);
+                        else if (currentSelectedCell.X != -1 && board[currentSelectedCell.X, currentSelectedCell.Y] == O)
+                            Draw_O(currentSelectedCell.X, currentSelectedCell.Y);
+
+                        currentSelectedCell = new Model.Point(x, y);
                         Draw_O(x, y);
+                        DrawCurrentSelectedCell();
                         board[x, y] = O;
                         emptyCell--;
                         isX = !isX;
+
                         state = CheckEnd(x, y, ref str, ref colWin, ref rowWin, ref colWin2, ref rowWin2);
                         if (state == GameState.OWin)
                         {

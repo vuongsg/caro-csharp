@@ -55,7 +55,7 @@
         <!--Row 1-->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="410" />
+                <ColumnDefinition Width="430" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
@@ -98,21 +98,22 @@
                 <Rectangle Width="120"  Height="5" Stroke="Black" StrokeThickness="5" />
                 <TextBlock FontSize="18">
                     <TextBlock.Inlines>
-                        <Run Text="How play:" FontWeight="Bold" />
+                        <Run Text="How to play:" FontWeight="Bold" />
                         <LineBreak />
                         <Run Text="- You act X, computer acts O" />
                         <LineBreak />
                         <Run Text="- In the very first game, computer goes first" />
                         <LineBreak />
-                        <Run Text="- From the second game on, the player who lost in " />
+                        <Run Text="- Later on, the player who lost in previous game" />
                         <LineBreak />
-                        <Run Text="previous game will go first" />
+                        <Run Text="will go first" />
                         <LineBreak />
                         <Run Text="- If a player has 5 consecutive points, but the winning line " />
                         <LineBreak />
-                        <Run Text="is covered before the first and after the last ones by" />
+                        <Run Text="is covered before the first and after the last ones by the" />
                         <LineBreak />
                         <Run Text="competitor, it's not the win." />
+                        <LineBreak />
                         <LineBreak />
                         <Run Text="Have fun playing ^_^" FontWeight="Bold" />
                     </TextBlock.Inlines>

@@ -43,9 +43,7 @@ namespace Caro.ViewModel
         private void TitleBar_MouseDown(MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
-            {
                 win.DragMove();
-            }
         }
 
         private void accessMessage_Load(AccessText at)

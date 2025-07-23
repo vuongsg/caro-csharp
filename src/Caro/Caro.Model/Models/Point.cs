@@ -1,6 +1,6 @@
 ﻿namespace Caro.Model
 {
-	public class Point
+	public struct Point
     {
         #region Fields
         int _x;
@@ -14,9 +14,7 @@
             set
             {
                 if (_x != value)
-                {
                     _x = value;
-                }
             }
         }
 
@@ -26,17 +24,12 @@
             set
             {
                 if (_y != value)
-                {
                     _y = value;
-                }
             }
         }
         #endregion
 
         #region Constructors
-        public Point()
-        {
-        }
 
         public Point(int x, int y)
         {
